@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "./headers/LPS_ARRAY.h"
+
 using namespace std;
 
 void ReadFiles(vector<string>& strings, string fileName);
@@ -21,12 +23,32 @@ int main(int argc, char* argv[]){
     ReadFiles(mCodes, folder + "/mCode2.txt");
     ReadFiles(mCodes, folder + "/mCode3.txt");
 
+    vector<int> lps1 = ComputeLPSArray(mCodes[0]);
+    vector<int> lps2 = ComputeLPSArray(mCodes[1]);
+    vector<int> lps3 = ComputeLPSArray(mCodes[2]);
+
     for(int i = 0; i < transmissions.size(); i++){
         cout << transmissions[i] << endl;
     }
     for(int i = 0; i < mCodes.size(); i++){
-        cout << transmissions[i] << endl;
+        cout << mCodes[i] << endl;
     }
+
+    for(int i = 0; i < lps1.size(); i++){
+        cout << lps1[i] << " ";
+    }
+    cout << endl;
+
+    for(int i = 0; i < lps2.size(); i++){
+        cout << lps2[i] << " "; 
+    }
+    cout << endl;
+
+    for(int i = 0; i < lps3.size(); i++){
+        cout << lps3[i] << " ";
+    }
+    cout << endl;
+
 
     return 0;
 }
