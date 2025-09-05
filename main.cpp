@@ -20,35 +20,13 @@ int main(int argc, char* argv[]){
     transmissions.push_back(ReadFiles(folder + "/transmission1.txt"));
     transmissions.push_back(ReadFiles(folder + "/transmission2.txt"));
     mCodes.push_back(ReadFiles(folder + "/mCode1.txt"));
-    mCodes.push_back(ReadFiles(folder + "/mCode1.txt"));
-    mCodes.push_back(ReadFiles(folder + "/mCode1.txt"));
+    mCodes.push_back(ReadFiles(folder + "/mCode2.txt"));
+    mCodes.push_back(ReadFiles(folder + "/mCode3.txt"));
     
 
-    vector<int> lps1 = ComputeLPSArray(mCodes[0]);
-    vector<int> lps2 = ComputeLPSArray(mCodes[1]);
-    vector<int> lps3 = ComputeLPSArray(mCodes[2]);
-
-    for(int i = 0; i < transmissions.size(); i++){
-        cout << transmissions[i] << endl;
-    }
-    for(int i = 0; i < mCodes.size(); i++){
-        cout << mCodes[i] << endl;
-    }
-
-    for(int i = 0; i < lps1.size(); i++){
-        cout << lps1[i] << " ";
-    }
-    cout << endl;
-
-    for(int i = 0; i < lps2.size(); i++){
-        cout << lps2[i] << " "; 
-    }
-    cout << endl;
-
-    for(int i = 0; i < lps3.size(); i++){
-        cout << lps3[i] << " ";
-    }
-    cout << endl;
+    vector<int> lps1,
+                lps2, 
+                lps3;
 
 
     return 0;
@@ -64,5 +42,6 @@ string ReadFiles(string fileName){
         return line;
     } else{
         cout << "Error: Could not open the file." << endl;
+        return "";
     }
 }
