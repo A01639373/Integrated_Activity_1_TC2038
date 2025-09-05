@@ -8,6 +8,7 @@
 using namespace std;
 
 string ReadFiles(string fileName);
+void Evaluate(vector<string>& mCodes, string transmissions);
 
 int main(int argc, char* argv[]){
     if (argc < 2) {
@@ -22,12 +23,8 @@ int main(int argc, char* argv[]){
     mCodes.push_back(ReadFiles(folder + "/mCode1.txt"));
     mCodes.push_back(ReadFiles(folder + "/mCode2.txt"));
     mCodes.push_back(ReadFiles(folder + "/mCode3.txt"));
-    
 
-    vector<int> lps1,
-                lps2, 
-                lps3;
-
+    Evaluate(mCodes, transmissions[0]);
 
     return 0;
 }
@@ -43,5 +40,18 @@ string ReadFiles(string fileName){
     } else{
         cout << "Error: Could not open the file." << endl;
         return "";
+    }
+}
+
+void Evaluate(vector<string>& mCodes, string transmissions){
+    vector<int> res;
+    for(int i = 0; i < mCodes.size(); i++){
+        res = search(mCodes[0], transmissions);
+
+        if(res.size() > 0){
+            cout << "true that";
+        }else{
+
+        }
     }
 }
