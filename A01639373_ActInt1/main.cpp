@@ -34,11 +34,14 @@ int main(int argc, char* argv[]){
             vector<pair<int,int>> candidates = mob.getPalindromesOfLength(mCodes[i].size());
             bool found = false;
 
-            for(auto &p : candidates){
-                string candidate = transmission.substr(p.first, p.second - p.first + 1);
+            for(int i = 0; i < candidates.size(); i++){
+                int start = candidates[i].first;
+                int end = candidates[i].second;
+                string candidate = transmission.substr(start, end - start + 1);
+
                 if (candidate == mCodes[i]) {
                     found = true;
-                    cout << mCodes[i] << " found at positions " << p.first << "-" << p.second << "\n";
+                    cout << mCodes[i] << " found at positions " << start << "-" << end << "\n";
                 }
             }
 

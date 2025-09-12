@@ -7,10 +7,10 @@ using namespace std;
 
 class Manacher {
 public:
-    vector<int> pal;    // palindrome radius array
-    string ms;        // transformed string
+    vector<int> pal;    //palindrome radius array
+    string ms;     //string
 
-    // Constructor: transforms the string and runs Manacher
+    //constructor
     Manacher(const string &s) {
         ms = "#";
         for (char c : s) {
