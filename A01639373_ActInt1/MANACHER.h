@@ -7,7 +7,7 @@ using namespace std;
 
 class Manacher {
 public:
-    vector<int> p;    // palindrome radius array
+    vector<int> pal;    // palindrome radius array
     string ms;        // transformed string
 
     // Constructor: transforms the string and runs Manacher
@@ -22,16 +22,16 @@ public:
 
     void runManacher() {
         int n = ms.size();
-        p.assign(n, 0);
+        pal.assign(n, 0);
         int l = 0, r = 0;
 
         for (int i = 1; i < n - 1; ++i) {
             int mirror = l + r - i;
-            if (i < r) p[i] = min(r - i, p[mirror]);
-            while (ms[i + 1 + p[i]] == ms[i - 1 - p[i]]) ++p[i];
-            if (i + p[i] > r) {
-                l = i - p[i];
-                r = i + p[i];
+            if (i < r) pal[i] = min(r - i, pal[mirror]);
+            while (ms[i + 1 + pal[i]] == ms[i - 1 - pal[i]]) ++pal[i];
+            if (i + pal[i] > r) {
+                l = i - pal[i];
+                r = i + pal[i];
             }
         }
     }
@@ -39,7 +39,7 @@ public:
     // Get palindrome radius centered at index `cen` (original string index)
     int getLongest(int cen, int odd) {
         int pos = 2 * cen + 2 + !odd;
-        return p[pos];
+        return pal[pos];
     }
 
     // Return all palindromes of a given length in the original string

@@ -8,7 +8,6 @@
 using namespace std;
 
 string ReadFiles(string fileName);
-void Evaluate(vector<string>& mCodes, string transmissions);
 
 int main(int argc, char* argv[]){
     if (argc < 2) {
@@ -17,6 +16,7 @@ int main(int argc, char* argv[]){
     }
     string folder = argv[1];
 
+    //read codes/transmissions
     vector<string> transmissions, mCodes;
     transmissions.push_back(ReadFiles(folder + "/transmission1.txt"));
     transmissions.push_back(ReadFiles(folder + "/transmission2.txt"));
@@ -24,33 +24,29 @@ int main(int argc, char* argv[]){
     mCodes.push_back(ReadFiles(folder + "/mCode2.txt"));
     mCodes.push_back(ReadFiles(folder + "/mCode3.txt"));
 
-    //KMP's Algorithm
-    //Evaluate(mCodes, transmissions[0]);
-
+    //
     for (int t = 0; t < transmissions.size(); t++) {
         string &transmission = transmissions[t];
-        Manacher mob(transmission); // use Manacher directly
+        Manacher mob(transmission);
+        
         cout << "\n=== Transmission " << t+1 << " ===\n";
-
-        // Loop through mCodes
-        for (auto &mCode : mCodes) {
-            vector<pair<int,int>> candidates = mob.getPalindromesOfLength(mCode.size());
+        for(int i=0; i<mCodes.size(); i++){
+            vector<pair<int,int>> candidates = mob.getPalindromesOfLength(mCodes[i].size());
             bool found = false;
 
-            for (auto &p : candidates) {
+            for(auto &p : candidates){
                 string candidate = transmission.substr(p.first, p.second - p.first + 1);
-                if (candidate == mCode) {
+                if (candidate == mCodes[i]) {
                     found = true;
-                    cout << mCode << " found at positions " << p.first << "-" << p.second << "\n";
+                    cout << mCodes[i] << " found at positions " << p.first << "-" << p.second << "\n";
                 }
             }
 
-            if (!found) {
-                cout << mCode << " not found\n";
+            if(!found){
+                cout << mCodes[i] << " not found\n";
             }
         }
     }
-
 
     return 0;
 }
