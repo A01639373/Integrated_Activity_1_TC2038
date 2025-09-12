@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
             vector<pair<int,int>> candidates = mob.getPalindromesOfLength(mCodes[i].size());
             bool found = false;
 
-            for(int i = 0; i < candidates.size(); i++){
+            for(int j = 0; i < candidates.size(); j++){
                 int start = candidates[i].first;
                 int end = candidates[i].second;
                 string candidate = transmission.substr(start, end - start + 1);
