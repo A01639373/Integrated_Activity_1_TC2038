@@ -9,20 +9,14 @@ using namespace std;
 
 string ReadFiles(string fileName);
 
-int main(int argc, char* argv[]){
-    if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " <test_case_folder>" << endl;
-        return 1;
-    }
-    string folder = argv[1];
-
+int main(){
     //read codes/transmissions
     vector<string> transmissions, mCodes;
-    transmissions.push_back(ReadFiles(folder + "/transmission1.txt"));
-    transmissions.push_back(ReadFiles(folder + "/transmission2.txt"));
-    mCodes.push_back(ReadFiles(folder + "/mCode1.txt"));
-    mCodes.push_back(ReadFiles(folder + "/mCode2.txt"));
-    mCodes.push_back(ReadFiles(folder + "/mCode3.txt"));
+    transmissions.push_back(ReadFiles("./transmission1.txt"));
+    transmissions.push_back(ReadFiles("./transmission2.txt"));
+    mCodes.push_back(ReadFiles("./mCode1.txt"));
+    mCodes.push_back(ReadFiles("./mCode2.txt"));
+    mCodes.push_back(ReadFiles("./mCode3.txt"));
 
     //
     for (int t = 0; t < transmissions.size(); t++) {
@@ -34,16 +28,17 @@ int main(int argc, char* argv[]){
             vector<pair<int,int>> candidates = mob.getPalindromesOfLength(mCodes[i].size());
             bool found = false;
 
-            for(int j = 0; i < candidates.size(); j++){
-                int start = candidates[i].first;
-                int end = candidates[i].second;
+            for(int j=0; j < candidates.size(); j++){
+                // start and end of position pairs
+                int start = candidates[j].first;
+                int end = candidates[j].second;
                 string candidate = transmission.substr(start, end - start + 1);
 
                 if (candidate == mCodes[i]) {
                     found = true;
                     cout << mCodes[i] << " found at positions " << start << "-" << end << "\n";
                 }
-            }
+            }  
 
             if(!found){
                 cout << mCodes[i] << " not found\n";

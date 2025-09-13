@@ -12,11 +12,11 @@ public:
 
     //constructor
     Manacher(const string &s) {
-        ms = "#";
+        ms = "@";
         for (char c : s) {
             ms += "#" + string(1, c);
         }
-        ms += "#";
+        ms += "#$";
         runManacher();
     }
 
@@ -36,13 +36,13 @@ public:
         }
     }
 
-    // Get palindrome radius centered at index `cen` (original string index)
+    // palindrome radius centered at index center
     int getLongest(int cen, int odd) {
         int pos = 2 * cen + 2 + !odd;
         return pal[pos];
     }
 
-    // Return all palindromes of a given length in the original string
+    // Return all palindromes of a given length in the string
     vector<pair<int,int>> getPalindromesOfLength(int length) {
         vector<pair<int,int>> result;
         int n = (ms.size() - 2) / 2;
